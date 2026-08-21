@@ -1,153 +1,18 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calendar</title>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body { width: 100%; height: 100%; overflow: hidden; background: #ffffff; }
     #container { width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: center; }
-    .loading { font-size: 22px; color: #666; font-weight: bold; }
-    .error { color: #d00; font-size: 16px; padding: 20px; text-align: left; }
   </style>
 </head>
 <body>
   <div id="container">
-    <div class="loading" id="status">カレンダー読み込み中...</div>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" style="width:100%; height:100%; display:block;"><rect width="100%" height="100%" fill="#ffffff"/><text x="15" y="50" font-size="30" font-weight="bold" fill="#000000">2026年 8月</text><text x="1185" y="50" font-size="16" fill="#666666" text-anchor="end">2026　TJ2年間予定</text><line x1="15" y1="60" x2="1185" y2="60" stroke="#000000" stroke-width="2"/><rect x="15" y="70" width="167.14285714285714" height="28" fill="#f0f0f0" stroke="#cccccc"/><text x="98.57142857142857" y="89" font-size="15" font-weight="bold" fill="#d00000" text-anchor="middle">日</text><rect x="182.14285714285714" y="70" width="167.14285714285714" height="28" fill="#f0f0f0" stroke="#cccccc"/><text x="265.7142857142857" y="89" font-size="15" font-weight="bold" fill="#000000" text-anchor="middle">月</text><rect x="349.2857142857143" y="70" width="167.14285714285714" height="28" fill="#f0f0f0" stroke="#cccccc"/><text x="432.85714285714283" y="89" font-size="15" font-weight="bold" fill="#000000" text-anchor="middle">火</text><rect x="516.4285714285714" y="70" width="167.14285714285714" height="28" fill="#f0f0f0" stroke="#cccccc"/><text x="600" y="89" font-size="15" font-weight="bold" fill="#000000" text-anchor="middle">水</text><rect x="683.5714285714286" y="70" width="167.14285714285714" height="28" fill="#f0f0f0" stroke="#cccccc"/><text x="767.1428571428571" y="89" font-size="15" font-weight="bold" fill="#000000" text-anchor="middle">木</text><rect x="850.7142857142857" y="70" width="167.14285714285714" height="28" fill="#f0f0f0" stroke="#cccccc"/><text x="934.2857142857142" y="89" font-size="15" font-weight="bold" fill="#000000" text-anchor="middle">金</text><rect x="1017.8571428571429" y="70" width="167.14285714285714" height="28" fill="#f0f0f0" stroke="#cccccc"/><text x="1101.4285714285716" y="89" font-size="15" font-weight="bold" fill="#0055d0" text-anchor="middle">土</text><rect x="15" y="98" width="167.14285714285714" height="114.5" fill="#f5f5f5" stroke="#cccccc"/><text x="21" y="116" font-size="15" font-weight="bold" fill="#aaaaaa">26</text><rect x="182.14285714285714" y="98" width="167.14285714285714" height="114.5" fill="#f5f5f5" stroke="#cccccc"/><text x="188.14285714285714" y="116" font-size="15" font-weight="bold" fill="#aaaaaa">27</text><rect x="349.2857142857143" y="98" width="167.14285714285714" height="114.5" fill="#f5f5f5" stroke="#cccccc"/><text x="355.2857142857143" y="116" font-size="15" font-weight="bold" fill="#aaaaaa">28</text><rect x="516.4285714285714" y="98" width="167.14285714285714" height="114.5" fill="#f5f5f5" stroke="#cccccc"/><text x="522.4285714285714" y="116" font-size="15" font-weight="bold" fill="#aaaaaa">29</text><rect x="683.5714285714286" y="98" width="167.14285714285714" height="114.5" fill="#f5f5f5" stroke="#cccccc"/><text x="689.5714285714286" y="116" font-size="15" font-weight="bold" fill="#aaaaaa">30</text><rect x="850.7142857142857" y="98" width="167.14285714285714" height="114.5" fill="#f5f5f5" stroke="#cccccc"/><text x="856.7142857142857" y="116" font-size="15" font-weight="bold" fill="#aaaaaa">31</text><rect x="1017.8571428571429" y="98" width="167.14285714285714" height="114.5" fill="#ffffff" stroke="#cccccc"/><text x="1023.8571428571429" y="116" font-size="15" font-weight="bold" fill="#000000">1</text><rect x="15" y="212.5" width="167.14285714285714" height="114.5" fill="#ffffff" stroke="#cccccc"/><text x="21" y="230.5" font-size="15" font-weight="bold" fill="#000000">2</text><rect x="182.14285714285714" y="212.5" width="167.14285714285714" height="114.5" fill="#ffffff" stroke="#cccccc"/><text x="188.14285714285714" y="230.5" font-size="15" font-weight="bold" fill="#000000">3</text><rect x="349.2857142857143" y="212.5" width="167.14285714285714" height="114.5" fill="#ffffff" stroke="#cccccc"/><text x="355.2857142857143" y="230.5" font-size="15" font-weight="bold" fill="#000000">4</text><rect x="516.4285714285714" y="212.5" width="167.14285714285714" height="114.5" fill="#ffffff" stroke="#cccccc"/><text x="522.4285714285714" y="230.5" font-size="15" font-weight="bold" fill="#000000">5</text><rect x="683.5714285714286" y="212.5" width="167.14285714285714" height="114.5" fill="#ffffff" stroke="#cccccc"/><text x="689.5714285714286" y="230.5" font-size="15" font-weight="bold" fill="#000000">6</text><rect x="850.7142857142857" y="212.5" width="167.14285714285714" height="114.5" fill="#ffffff" stroke="#cccccc"/><text x="856.7142857142857" y="230.5" font-size="15" font-weight="bold" fill="#000000">7</text><rect x="1017.8571428571429" y="212.5" width="167.14285714285714" height="114.5" fill="#ffffff" stroke="#cccccc"/><text x="1023.8571428571429" y="230.5" font-size="15" font-weight="bold" fill="#000000">8</text><rect x="15" y="327" width="167.14285714285714" height="114.5" fill="#ffffff" stroke="#cccccc"/><text x="21" y="345" font-size="15" font-weight="bold" fill="#000000">9</text><rect x="182.14285714285714" y="327" width="167.14285714285714" height="114.5" fill="#ffffff" stroke="#cccccc"/><text x="188.14285714285714" y="345" font-size="15" font-weight="bold" fill="#000000">10</text><rect x="349.2857142857143" y="327" width="167.14285714285714" height="114.5" fill="#ffffff" stroke="#cccccc"/><text x="355.2857142857143" y="345" font-size="15" font-weight="bold" fill="#000000">11</text><rect x="516.4285714285714" y="327" width="167.14285714285714" height="114.5" fill="#ffffff" stroke="#cccccc"/><text x="522.4285714285714" y="345" font-size="15" font-weight="bold" fill="#000000">12</text><rect x="683.5714285714286" y="327" width="167.14285714285714" height="114.5" fill="#ffffff" stroke="#cccccc"/><text x="689.5714285714286" y="345" font-size="15" font-weight="bold" fill="#000000">13</text><rect x="850.7142857142857" y="327" width="167.14285714285714" height="114.5" fill="#ffffff" stroke="#cccccc"/><text x="856.7142857142857" y="345" font-size="15" font-weight="bold" fill="#000000">14</text><rect x="1017.8571428571429" y="327" width="167.14285714285714" height="114.5" fill="#ffffff" stroke="#cccccc"/><text x="1023.8571428571429" y="345" font-size="15" font-weight="bold" fill="#000000">15</text><rect x="15" y="441.5" width="167.14285714285714" height="114.5" fill="#ffffff" stroke="#cccccc"/><text x="21" y="459.5" font-size="15" font-weight="bold" fill="#000000">16</text><rect x="182.14285714285714" y="441.5" width="167.14285714285714" height="114.5" fill="#ffffff" stroke="#cccccc"/><text x="188.14285714285714" y="459.5" font-size="15" font-weight="bold" fill="#000000">17</text><rect x="185.14285714285714" y="463.5" width="161.14285714285714" height="17" fill="#e8e8e8" rx="2"/><text x="188.14285714285714" y="476.5" font-size="11" fill="#111111">全校出校日</text><rect x="349.2857142857143" y="441.5" width="167.14285714285714" height="114.5" fill="#ffffff" stroke="#cccccc"/><text x="355.2857142857143" y="459.5" font-size="15" font-weight="bold" fill="#000000">18</text><rect x="516.4285714285714" y="441.5" width="167.14285714285714" height="114.5" fill="#ffffff" stroke="#cccccc"/><text x="522.4285714285714" y="459.5" font-size="15" font-weight="bold" fill="#000000">19</text><rect x="683.5714285714286" y="441.5" width="167.14285714285714" height="114.5" fill="#ffffff" stroke="#cccccc"/><text x="689.5714285714286" y="459.5" font-size="15" font-weight="bold" fill="#000000">20</text><rect x="850.7142857142857" y="441.5" width="167.14285714285714" height="114.5" fill="#eef6ff" stroke="#cccccc"/><rect x="850.7142857142857" y="441.5" width="167.14285714285714" height="114.5" fill="none" stroke="#0066cc" stroke-width="2"/><text x="856.7142857142857" y="459.5" font-size="15" font-weight="bold" fill="#0066cc">21</text><rect x="1017.8571428571429" y="441.5" width="167.14285714285714" height="114.5" fill="#ffffff" stroke="#cccccc"/><text x="1023.8571428571429" y="459.5" font-size="15" font-weight="bold" fill="#000000">22</text><rect x="15" y="556" width="167.14285714285714" height="114.5" fill="#ffffff" stroke="#cccccc"/><text x="21" y="574" font-size="15" font-weight="bold" fill="#000000">23</text><rect x="182.14285714285714" y="556" width="167.14285714285714" height="114.5" fill="#ffffff" stroke="#cccccc"/><text x="188.14285714285714" y="574" font-size="15" font-weight="bold" fill="#000000">24</text><rect x="349.2857142857143" y="556" width="167.14285714285714" height="114.5" fill="#ffffff" stroke="#cccccc"/><text x="355.2857142857143" y="574" font-size="15" font-weight="bold" fill="#000000">25</text><rect x="352.2857142857143" y="578" width="161.14285714285714" height="17" fill="#e8e8e8" rx="2"/><text x="355.2857142857143" y="591" font-size="11" fill="#111111">オープンスクール</text><rect x="516.4285714285714" y="556" width="167.14285714285714" height="114.5" fill="#ffffff" stroke="#cccccc"/><text x="522.4285714285714" y="574" font-size="15" font-weight="bold" fill="#000000">26</text><rect x="519.4285714285714" y="578" width="161.14285714285714" height="17" fill="#e8e8e8" rx="2"/><text x="522.4285714285714" y="591" font-size="11" fill="#111111">オープンスクール</text><rect x="683.5714285714286" y="556" width="167.14285714285714" height="114.5" fill="#ffffff" stroke="#cccccc"/><text x="689.5714285714286" y="574" font-size="15" font-weight="bold" fill="#000000">27</text><rect x="850.7142857142857" y="556" width="167.14285714285714" height="114.5" fill="#ffffff" stroke="#cccccc"/><text x="856.7142857142857" y="574" font-size="15" font-weight="bold" fill="#000000">28</text><rect x="1017.8571428571429" y="556" width="167.14285714285714" height="114.5" fill="#ffffff" stroke="#cccccc"/><text x="1023.8571428571429" y="574" font-size="15" font-weight="bold" fill="#000000">29</text><rect x="15" y="670.5" width="167.14285714285714" height="114.5" fill="#ffffff" stroke="#cccccc"/><text x="21" y="688.5" font-size="15" font-weight="bold" fill="#000000">30</text><rect x="182.14285714285714" y="670.5" width="167.14285714285714" height="114.5" fill="#ffffff" stroke="#cccccc"/><text x="188.14285714285714" y="688.5" font-size="15" font-weight="bold" fill="#000000">31</text><rect x="349.2857142857143" y="670.5" width="167.14285714285714" height="114.5" fill="#f5f5f5" stroke="#cccccc"/><text x="355.2857142857143" y="688.5" font-size="15" font-weight="bold" fill="#aaaaaa">1</text><rect x="352.2857142857143" y="692.5" width="161.14285714285714" height="17" fill="#e8e8e8" rx="2"/><text x="355.2857142857143" y="705.5" font-size="11" fill="#111111">始業式</text><rect x="516.4285714285714" y="670.5" width="167.14285714285714" height="114.5" fill="#f5f5f5" stroke="#cccccc"/><text x="522.4285714285714" y="688.5" font-size="15" font-weight="bold" fill="#aaaaaa">2</text><rect x="683.5714285714286" y="670.5" width="167.14285714285714" height="114.5" fill="#f5f5f5" stroke="#cccccc"/><text x="689.5714285714286" y="688.5" font-size="15" font-weight="bold" fill="#aaaaaa">3</text><rect x="850.7142857142857" y="670.5" width="167.14285714285714" height="114.5" fill="#f5f5f5" stroke="#cccccc"/><text x="856.7142857142857" y="688.5" font-size="15" font-weight="bold" fill="#aaaaaa">4</text><rect x="1017.8571428571429" y="670.5" width="167.14285714285714" height="114.5" fill="#f5f5f5" stroke="#cccccc"/><text x="1023.8571428571429" y="688.5" font-size="15" font-weight="bold" fill="#aaaaaa">5</text></svg>
   </div>
-
-  <script>
-    // ↓↓↓ ご自身のGASのWebアプリURLに書き換えてください ↓↓↓
-    var GAS_API_URL = "https://script.google.com/macros/s/AKfycbwBMphPm5mpKg6fl8ZfTfYdTbh6khW53nYYHzu1FSXLB86yoDHvKU6eHqJjXOppqecC/exec";
-
-    function updateStatus(msg) {
-      var el = document.getElementById('status');
-      if (el) el.innerText = msg;
-    }
-
-    function loadCalendar() {
-      updateStatus("通信中 (GASへアクセス)...");
-      
-      // 組み込み端末向けの最も互換性の高い通信方式 (XMLHttpRequest)
-      var xhr = new XMLHttpRequest();
-      xhr.open("GET", GAS_API_URL, true);
-      xhr.timeout = 15000; // 15秒タイムアウト
-
-      xhr.onload = function () {
-        if (xhr.status >= 200 && xhr.status < 300) {
-          try {
-            var data = JSON.parse(xhr.responseText);
-            renderSvgCalendar(data);
-          } catch (e) {
-            showError("JSONパース失敗: " + e.message);
-          }
-        } else {
-          showError("HTTPエラー: " + xhr.status + " " + xhr.statusText);
-        }
-      };
-
-      xhr.onerror = function () {
-        showError("通信エラー (CORSまたは接続失敗)");
-      };
-
-      xhr.ontimeout = function () {
-        showError("タイムアウト (応答がありませんでした)");
-      };
-
-      xhr.send();
-    }
-
-    function showError(msg) {
-      document.getElementById('container').innerHTML = 
-        '<div class="error"><b>読み込み失敗</b><br>' + msg + '<br><br><button onclick="loadCalendar()" style="padding:5px 10px;">再試行</button></div>';
-    }
-
-    function renderSvgCalendar(data) {
-      var width = 1200, height = 800, margin = 15;
-      var headerHeight = 55, dayHeaderHeight = 28;
-      var gridWidth = width - margin * 2;
-      var gridHeight = height - margin * 2 - headerHeight - dayHeaderHeight;
-      var colWidth = gridWidth / 7;
-      var rowHeight = gridHeight / 6;
-
-      var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + width + ' ' + height + '" style="width:100%; height:100%; display:block;">';
-      svg += '<rect width="100%" height="100%" fill="#ffffff"/>';
-      svg += '<text x="' + margin + '" y="' + (margin + 35) + '" font-size="30" font-weight="bold" fill="#000000">' + data.year + '年 ' + data.month + '月</text>';
-      svg += '<text x="' + (width - margin) + '" y="' + (margin + 35) + '" font-size="16" fill="#666666" text-anchor="end">' + escapeXml(data.calendarTitle) + '</text>';
-      svg += '<line x1="' + margin + '" y1="' + (margin + headerHeight - 10) + '" x2="' + (width - margin) + '" y2="' + (margin + headerHeight - 10) + '" stroke="#000000" stroke-width="2"/>';
-
-      var dayNames = ['日', '月', '火', '水', '木', '金', '土'];
-      var startY = margin + headerHeight;
-      for (var i = 0; i < dayNames.length; i++) {
-        var x = margin + i * colWidth;
-        var color = (i === 0) ? '#d00000' : (i === 6) ? '#0055d0' : '#000000';
-        svg += '<rect x="' + x + '" y="' + startY + '" width="' + colWidth + '" height="' + dayHeaderHeight + '" fill="#f0f0f0" stroke="#cccccc"/>';
-        svg += '<text x="' + (x + colWidth / 2) + '" y="' + (startY + 19) + '" font-size="15" font-weight="bold" fill="' + color + '" text-anchor="middle">' + dayNames[i] + '</text>';
-      }
-
-      var calStartY = startY + dayHeaderHeight;
-      var parts = data.gridStartDate.split('-');
-      var startDate = new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10));
-
-      for (var i = 0; i < 42; i++) {
-        var col = i % 7;
-        var row = Math.floor(i / 7);
-        var cellX = margin + col * colWidth;
-        var cellY = calStartY + row * rowHeight;
-
-        var curDate = new Date(startDate);
-        curDate.setDate(startDate.getDate() + i);
-
-        var y = curDate.getFullYear();
-        var m = ('0' + (curDate.getMonth() + 1)).slice(-2);
-        var d = ('0' + curDate.getDate()).slice(-2);
-        var dateKey = y + '-' + m + '-' + d;
-
-        var isCurrentMonth = (curDate.getMonth() + 1) === data.month;
-        var isToday = (dateKey === data.todayStr);
-
-        var cellBg = isCurrentMonth ? '#ffffff' : '#f5f5f5';
-        if (isToday) cellBg = '#eef6ff';
-
-        svg += '<rect x="' + cellX + '" y="' + cellY + '" width="' + colWidth + '" height="' + rowHeight + '" fill="' + cellBg + '" stroke="#cccccc"/>';
-        if (isToday) {
-          svg += '<rect x="' + cellX + '" y="' + cellY + '" width="' + colWidth + '" height="' + rowHeight + '" fill="none" stroke="#0066cc" stroke-width="2"/>';
-        }
-
-        var dateColor = isCurrentMonth ? '#000000' : '#aaaaaa';
-        if (isToday) dateColor = '#0066cc';
-        svg += '<text x="' + (cellX + 6) + '" y="' + (cellY + 18) + '" font-size="15" font-weight="bold" fill="' + dateColor + '">' + curDate.getDate() + '</text>';
-
-        if (data.eventsByDate && data.eventsByDate[dateKey]) {
-          var eventY = cellY + 34;
-          var events = data.eventsByDate[dateKey];
-          var maxShow = Math.min(events.length, 3);
-          for (var j = 0; j < maxShow; j++) {
-            var ev = events[j];
-            var shortTitle = ev.length > 13 ? ev.slice(0, 12) + '…' : ev;
-            svg += '<rect x="' + (cellX + 3) + '" y="' + (eventY - 12) + '" width="' + (colWidth - 6) + '" height="17" fill="#e8e8e8" rx="2"/>';
-            svg += '<text x="' + (cellX + 6) + '" y="' + (eventY + 1) + '" font-size="11" fill="#111111">' + escapeXml(shortTitle) + '</text>';
-            eventY += 19;
-          }
-          if (events.length > 3) {
-            svg += '<text x="' + (cellX + 6) + '" y="' + (eventY + 1) + '" font-size="10" fill="#777777">+他' + (events.length - 3) + '件</text>';
-          }
-        }
-      }
-      svg += '</svg>';
-      document.getElementById('container').innerHTML = svg;
-    }
-
-    function escapeXml(str) {
-      return String(str || '').replace(/[<>&'"]/g, function(c) {
-        return {'<':'&lt;','>':'&gt;','&':'&amp;',"'":'&apos;','"':'&quot;'}[c];
-      });
-    }
-
-    // 初回読み込み実行
-    loadCalendar();
-    setInterval(loadCalendar, 30 * 60 * 1000); // 30分毎に自動更新
-  </script>
 </body>
 </html>
